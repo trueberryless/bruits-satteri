@@ -50,4 +50,14 @@ mod tests {
     fn renders_plain_headings_without_ids() {
         assert_eq!(DocsHeading.render_start(3, None, &[]), "<h3>");
     }
+
+    #[test]
+    fn renders_heading_classes() {
+        let output =
+            DocsHeading.render_start(2, Some("some-heading"), &["class-one", "class-two"]);
+
+        assert!(output.starts_with(
+            "<h2 id=\"some-heading\" class=\"class-one class-two\"><a class=\"docs-heading-anchor\""
+        ));
+    }
 }
